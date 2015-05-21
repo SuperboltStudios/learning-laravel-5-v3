@@ -7,7 +7,14 @@ use Illuminate\HttpResponse;
 use App\Http\Controllers\Controller;
 
 
+
 class ArticlesController extends Controller {
+
+	/**
+	* Show all articles.
+	*
+	* @return Response
+	*/
 
 	public function index()
 	{
@@ -15,6 +22,13 @@ class ArticlesController extends Controller {
 
 		return view('articles.index', compact('articles'));
 	}
+
+	/**
+	* Show a single article.
+	*
+	* @param integer $id
+	* @return Response
+	*/
 
 	public function show($id)
 	{
@@ -25,12 +39,25 @@ class ArticlesController extends Controller {
 		return view('articles.show', compact('article'));
 	}
 
+	/**
+	* Show the page to create a new article.
+	*
+	* @return Response
+	*/
+
 	public function create()
 	{
 		return view('articles.create');
 	}
 
-	public function store(Request\CreateArticleRequest $request)
+	/**
+	* Save a new article.
+	*
+	* @param CreateArticleRequest $request
+	* @return Response
+	*/
+
+	public function store(CreateArticleRequest $request)
 	{
 		Article::create($request->all());
 
